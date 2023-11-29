@@ -28,7 +28,10 @@ class Produto(models.Model):
     destaque = models.BooleanField()
 
     def __str__(self):
-        return self.nome
+        return self.nome,
+    
+    def get_avaliacao(self):
+        return range(self.avaliacao)
       
 class Cliente(models.Model):
     ESTADO_CIVIL = [
