@@ -34,5 +34,12 @@ def produto_lista_por_id(request, id):
     return render(request, 'produtos.html', context)
 
 
-def produto_detalhe(request):
-    return render(request, 'produto_detalhes.html')
+def produto_detalhe(request, id):
+    #Buscar produto no banco
+    produto = Produto.objects.get(id = id)
+
+    context = {
+        'produto' : produto
+    }
+
+    return render(request, 'produto_detalhes.html', context)
