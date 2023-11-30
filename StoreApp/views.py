@@ -3,7 +3,12 @@ from StoreApp.models import Departamento, Produto
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    produtos_em_destaque = Produto.objects.filter(destaque = True)
+
+    context = {
+        'produtos' : produtos_em_destaque
+    }
+    return render(request, 'index.html', context)
 
 def produto_lista(request):
     #Buscar produto no banco
