@@ -37,9 +37,14 @@ def produto_lista_por_id(request, id):
 def produto_detalhe(request, id):
     #Buscar produto no banco
     produto = Produto.objects.get(id = id)
+    produtos_relacionados =  Produto.objects.filter(departamento_id = produto.departamento.id).exclude(id = id)[:4]
 
     context = {
-        'produto' : produto
+        'produto' : produto,
+        'produtos_relacionados' : produtos_relacionados
     }
 
     return render(request, 'produto_detalhes.html', context)
+
+def institucional(request):
+    return render(request, 'sobre.html')
