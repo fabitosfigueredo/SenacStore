@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from StoreApp.models import Departamento, Produto
+from StoreApp.forms import ContatoForm
 
 # Create your views here.
 def index(request):
@@ -48,3 +49,14 @@ def produto_detalhe(request, id):
 
 def institucional(request):
     return render(request, 'sobre.html')
+
+def contato(request):
+
+    formulario = ContatoForm()
+
+    context = {
+        'form_contato' : formulario
+    }
+
+    
+    return render(request, 'contato.html', context)   
