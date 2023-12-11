@@ -20,8 +20,8 @@
             <div class="container px-4 px-lg-5 mt-5">
         
                 {% if mensagem %}
-                <div class="alert alert-{% if 'Erro' in mensagem %} danger{% else %}success{% endif %}">
-                    {{ mensagem }}
+                <div class=" text center alert alert-{% if 'Erro' in mensagem %}danger{% else %}success{% endif %}">
+                {{ mensagem }}
                 </div>
                 {% endif %}           
 
@@ -29,7 +29,7 @@
                     {% csrf_token %}
                     <div class="col-md-6 offset-md-3">
                        {{ form_cadastro|crispy }}
-                       <input type="submit" value="Enviar" class="btn btn-dark">
+                       <input type="submit" value="Cadastrar" class="btn btn-dark">
                     </div>
                 </form>
 
