@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import pymysql
+
+pymysql.version_info = (1, 4, 6, 'final', 0)
+pymysql.install_as_MySQLdb()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'StoreApp',
     'crispy_forms',
-	'crispy_bootstrap5'
+	'crispy_bootstrap5',
+    'cloudinary_storage',
+	'cloudinary'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -81,13 +89,23 @@ WSGI_APPLICATION = 'SenacStore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'G6gcaceEBa5A1HCE4hGGGfCh-b3gaffB',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '24837',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -143,3 +161,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fabitofigueredo@gmail.com'
 EMAIL_HOST_PASSWORD = 'zhjw rscm ormr wtov'
 
+CLOUDINARY_STORAGE ={ 
+  'CLOUD_NAME' : "dtj9z2glo", 
+  'API_KEY' : "442595712759956", 
+  'API_SECRET' : "-Qw9oNj1FJ7TUzwOyj8TwyWxYOk" 
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
